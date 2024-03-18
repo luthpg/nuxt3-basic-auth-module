@@ -25,23 +25,44 @@ const getBasicAuthInputs = (event: H3Event<EventHandlerRequest>) => {
   }
 };
 
+const convertPathWildcardToRegexText = (path: string) =>
+  path
+    .replace(/\\/g, "/")
+    .replace(/\?/g, ".")
+    .replace(/\*/g, ".*")
+    .replace(/\//g, "/*");
+
+const isMatchPath = (
+  event: H3Event<EventHandlerRequest>,
+  ...searchKeys: string[]
+) => {
+  const { pathname } = getRequestURL(event);
+  const regExpArray = searchKeys.map((searchKey) => {
+    searchKey = convertPathWildcardToRegexText(searchKey);
+    return new RegExp(searchKey);
+  });
+  return regExpArray.some((regex) => regex.test(pathname));
+};
+
 export default defineEventHandler((event) => {
   const { node } = event;
 
-  const { pairs = { admin: "passAdmin" }, whiteList = [] } =
-    useRuntimeConfig().basicAuth || {};
+  const {
+    productionDomains = [],
+    pairs = { admin: "admin" },
+    whiteList = [],
+    realm = "Authentication Required",
+  } = useRuntimeConfig().basicAuth || {};
 
-  const url = getRequestURL(event).toString();
+  const host = getHeader(event, "host") || "";
 
-  if (
-    whiteList
-      .map((listItem) => {
-        listItem = listItem.replace(/\\/g, "/");
-        return new RegExp(listItem, "i");
-      })
-      .some((regex) => regex.test(url))
-  )
+  if (productionDomains.some((domain) => host.endsWith(domain))) {
     return;
+  }
+
+  if (isMatchPath(event, ...whiteList)) {
+    return;
+  }
 
   const { username, password } = getBasicAuthInputs(event);
   if (
@@ -51,10 +72,7 @@ export default defineEventHandler((event) => {
     pairs[username] !== password
   ) {
     node.res.statusCode = 401;
-    node.res.setHeader(
-      "WWW-Authenticate",
-      'Basic realm="Authentication Required"'
-    );
+    node.res.setHeader("WWW-Authenticate", `Basic realm="${realm}"`);
     node.res.end("Unauthorized");
   }
 });

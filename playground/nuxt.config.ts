@@ -1,12 +1,16 @@
 export default defineNuxtConfig({
-  modules: ['../src/module'],
+  modules: ["../src/module"],
   devtools: { enabled: true },
   runtimeConfig: {
     basicAuth: {
       pairs: {
-        admin: 'admin'
+        admin: "admin",
+        user1: "user",
+        user2: "user",
       },
-      whiteList: ['/api/*.*']
+      whiteList: ["/api/*"],
+      realm: "test",
+      productionDomains: ["test-site.com"],
     },
   },
-})
+});

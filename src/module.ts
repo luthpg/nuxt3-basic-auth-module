@@ -5,8 +5,10 @@ import { defineNuxtModule, addServerHandler } from "@nuxt/kit";
 declare module "@nuxt/schema" {
   interface RuntimeConfig {
     basicAuth: {
+      productionDomains?: string[];
       pairs?: Record<string, string>;
       whiteList?: string[];
+      realm?: string;
     };
   }
 }
