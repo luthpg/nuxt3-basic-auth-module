@@ -10,13 +10,15 @@ Find and replace all on all files (CMD+SHIFT+F):
 # Nuxt3 Basic Auth Module
 
 [![npm version][npm-version-src]][npm-version-href]
-[![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
+<!-- [![npm downloads][npm-downloads-src]][npm-downloads-href] -->
 
-Basic Auth Module for Nuxt3 for doing amazing things.
+Basic Authentication Module for Nuxt3.
 
-*Extended from repo [monsat/nuxt-basic-auth-module](https://github.com/monsat/nuxt-basic-auth-module)*
+Your Nuxt app can be protected, and allow accessing particular path (e.g. '/api/user/*' ) without basic authentication.
+
+*Extended from mofule [monsat/nuxt-basic-auth-module](https://github.com/monsat/nuxt-basic-auth-module), Special Thanks*
 
 - [✨ &nbsp;Release Notes](/CHANGELOG.md)
 <!-- - [🏀 Online playground](https://stackblitz.com/github/luthpg/nuxt3-basic-auth-module?file=playground%2Fapp.vue) -->
@@ -25,19 +27,116 @@ Basic Auth Module for Nuxt3 for doing amazing things.
 ## Features
 
 <!-- Highlight some of the features your module provide here -->
-- ⛰ &nbsp;Foo
-- 🚠 &nbsp;Bar
-- 🌲 &nbsp;Baz
+- 🔐 &nbsp;Protect your Nuxt.js(v3) app by Basic-Auth
+- 🤍 &nbsp;Exclude particular request path with `whiteList`, or production domain with `productionDomain`
 
 ## Quick Setup
 
 Install the module to your Nuxt application with one command:
 
 ```bash
-npx nuxi module add nuxt3-basic-auth-module
+npx nuxi module add @luthpg/nuxt3-basic-auth-module
+
+# or, install by manual and you must setup in nuxt.config.ts
+
+npm install -D @luthpg/nuxt3-basic-auth-module
 ```
 
 That's it! You can now use Nuxt3 Basic Auth Module in your Nuxt app ✨
+
+## Usage
+
+```ts
+// nuxt.config.ts
+
+import BasicAuth from '@luthpg/nuxt3-basic-auth-module';
+
+export default defineNuxtConfig({
+  modules: [
+    BasicAuth,
+  ],
+});
+```
+
+## Options
+
+### Module Options
+
+```ts
+// nuxt.config.ts
+
+import BasicAuth from '@luthpg/nuxt3-basic-auth-module';
+
+export default defineNuxtConfig({
+  modules: [
+    [
+      BasicAuth,
+      { enabled: process.env.IS_PROD !== '1', }
+    ]
+  ],
+});
+```
+
+#### enabled: boolean
+
+If set to `false`, skip registration authentication handler.
+
+---
+
+### Runtime config
+
+```ts
+// type definision
+interface RuntimeConfig {
+  basicAuth: {
+    productionDomains?: string[];
+    pairs?: Record<string, string>;
+    whiteList?: string[];
+    realm?: string;
+  };
+};
+```
+
+#### productionDomains: string[]
+
+Authentication is not required in these domains.
+
+`['foo.example.com']` matches also `bar.foo.example.com` (endWith match).
+
+#### pairs: Record<string, string>
+
+you can set authentication info like:
+
+```ts
+// nuxt.config.ts
+
+import BasicAuth from '@luthpg/nuxt3-basic-auth-module';
+
+export default defineNuxtConfig({
+  modules: [BasicAuth],
+  runtimeConfig: {
+    basicAuth: {
+      // configure like:
+      pairs: {
+        admin: 'passAdmin',
+        user: 'passUser',
+      },
+    },
+  },
+});
+```
+
+default pair is `{ admin: 'admin' }`.
+
+#### whiteList: string[]
+
+Also, authentication is not required in these pass.
+
+`['/api/*', '/global/page/*']` matches `/api/foo/bar`, `/global/page/1`.
+
+#### realm: string
+
+set realm, if needed.
 
 
 ## Contribution
@@ -73,14 +172,14 @@ That's it! You can now use Nuxt3 Basic Auth Module in your Nuxt app ✨
 
 
 <!-- Badges -->
-[npm-version-src]: https://img.shields.io/npm/v/nuxt3-basic-auth-module/latest.svg?style=flat&colorA=020420&colorB=00DC82
-[npm-version-href]: https://npmjs.com/package/nuxt3-basic-auth-module
+[npm-version-src]: https://img.shields.io/github/v/release/luthpg/nuxt3-basic-auth-module?style=flat&logoColor=020420&color=00DC82
+[npm-version-href]: https://npm.pkg.github.com/@luthpg/nuxt3-basic-auth-module
 
 [npm-downloads-src]: https://img.shields.io/npm/dm/nuxt3-basic-auth-module.svg?style=flat&colorA=020420&colorB=00DC82
-[npm-downloads-href]: https://npmjs.com/package/nuxt3-basic-auth-module
+[npm-downloads-href]: https://npm.pkg.github.com/@luthpg/nuxt3-basic-auth-module
 
-[license-src]: https://img.shields.io/npm/l/nuxt3-basic-auth-module.svg?style=flat&colorA=020420&colorB=00DC82
-[license-href]: https://npmjs.com/package/nuxt3-basic-auth-module
+[license-src]: https://img.shields.io/github/license/luthpg/nuxt3-basic-auth-module?style=flat&logoColor=020420&color=00DC82
+[license-href]: https://npm.pkg.github.com/@luthpg/nuxt3-basic-auth-module
 
 [nuxt-src]: https://img.shields.io/badge/Nuxt-020420?logo=nuxt.js
 [nuxt-href]: https://nuxt.com
