@@ -1,13 +1,4 @@
-<!--
-Get your module up and running quickly.
-
-Find and replace all on all files (CMD+SHIFT+F):
-- Name: Nuxt3 Basic Auth Module
-- Package name: nuxt3-basic-auth-module
-- Description: Basic Auth Module for Nuxt.js@3.x
--->
-
-# Nuxt3 Basic Auth Module
+# 🔐 Nuxt3 Basic Auth Module
 
 [![npm version][npm-version-src]][npm-version-href]
 [![License][license-src]][license-href]
@@ -16,7 +7,7 @@ Find and replace all on all files (CMD+SHIFT+F):
 
 Basic Authentication Module for Nuxt3.
 
-Your Nuxt app can be protected, and allow accessing particular path (e.g. '/api/user/*' ) without basic authentication.
+Your Nuxt app can be protected, and allow accessing particular path (e.g. `'/api/user/*'` ) without basic authentication.
 
 *Extended from mofule [monsat/nuxt-basic-auth-module](https://github.com/monsat/nuxt-basic-auth-module), Special Thanks*
 
