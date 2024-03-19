@@ -1,7 +1,7 @@
 # 🔐 Nuxt3 Basic Auth Module
 
-[![npm version][npm-version-src]][npm-version-href]
-[![License][license-src]][license-href]
+<!-- [![npm version][npm-version-src]][npm-version-href]
+[![License][license-src]][license-href] -->
 [![Nuxt][nuxt-src]][nuxt-href]
 <!-- [![npm downloads][npm-downloads-src]][npm-downloads-href] -->
 

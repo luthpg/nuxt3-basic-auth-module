@@ -31,12 +31,6 @@ jobs:
           field: version
           value: ${{ github.event.release.name }}
 
-      - name: Prepare .nuxt directory for Vitest
-        run: pnpm dev:prepare
-
-      - name: Install playwrite for Vitest
-        run: pnpm exec playwright install
-
       - name: Publish package
         run: npm publish
         env:
