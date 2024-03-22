@@ -1,7 +1,7 @@
 # 🔐 Nuxt3 Basic Auth Module
 
-<!-- [![npm version][npm-version-src]][npm-version-href]
-[![License][license-src]][license-href] -->
+[![npm version][npm-version-src]][npm-version-href]
+[![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 <!-- [![npm downloads][npm-downloads-src]][npm-downloads-href] -->
 
@@ -164,13 +164,13 @@ set realm, if needed.
 
 <!-- Badges -->
 [npm-version-src]: https://img.shields.io/github/v/release/luthpg/nuxt3-basic-auth-module?style=flat&logoColor=020420&color=00DC82
-[npm-version-href]: https://npm.pkg.github.com/@luthpg/nuxt3-basic-auth-module
+[npm-version-href]: https://github.com/luthpg/nuxt3-basic-auth-module/pkgs/npm/nuxt3-basic-auth-module
 
-[npm-downloads-src]: https://img.shields.io/npm/dm/nuxt3-basic-auth-module.svg?style=flat&colorA=020420&colorB=00DC82
-[npm-downloads-href]: https://npm.pkg.github.com/@luthpg/nuxt3-basic-auth-module
+<!-- [npm-downloads-src]: https://img.shields.io/npm/dm/nuxt3-basic-auth-module.svg?style=flat&colorA=020420&colorB=00DC82
+[npm-downloads-href]: https://github.com/luthpg/nuxt3-basic-auth-module/pkgs/npm/nuxt3-basic-auth-module -->
 
 [license-src]: https://img.shields.io/github/license/luthpg/nuxt3-basic-auth-module?style=flat&logoColor=020420&color=00DC82
-[license-href]: https://npm.pkg.github.com/@luthpg/nuxt3-basic-auth-module
+[license-href]: https://github.com/luthpg/nuxt3-basic-auth-module/pkgs/npm/nuxt3-basic-auth-module
 
 [nuxt-src]: https://img.shields.io/badge/Nuxt-020420?logo=nuxt.js
 [nuxt-href]: https://nuxt.com
