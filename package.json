@@ -1,6 +1,6 @@
 {
   "name": "@luthpg/nuxt3-basic-auth-module",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Basic-Auth module for Nuxt3",
   "repository": "https://github.com/luthpg/nuxt3-basic-auth-module.git",
   "license": "MIT",
@@ -26,7 +26,7 @@
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
-    "release:prepare": "pnpm run lint && pnpm run test && pnpm run prepack && changelogen",
+    "release:prepare": "pnpm run lint && pnpm run test && pnpm run prepack && changelogen --bump",
     "release": "pnpm release:prepare && pnpm publish && git push --follow-tags",
     "lint": "eslint .",
     "test": "vitest run",
