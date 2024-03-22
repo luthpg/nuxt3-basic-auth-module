@@ -1,6 +1,6 @@
 {
   "name": "@luthpg/nuxt3-basic-auth-module",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Basic-Auth module for Nuxt3",
   "repository": "https://github.com/luthpg/nuxt3-basic-auth-module.git",
   "license": "MIT",
